@@ -1,0 +1,15 @@
+'''
+string is_big(int ind)
+'''
+def is_big(ind):
+    '''
+    string ret
+    '''
+    if ind < 100:
+        ret = "No, it's not."
+        return ret
+    else:
+        ret = "Yes, it is."
+        return ret
+print(is_big(1000))
+print(is_big(10))

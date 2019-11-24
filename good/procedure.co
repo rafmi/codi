@@ -1,0 +1,8 @@
+'''
+int c
+void dodaj(int a, int b)
+'''
+def dodaj(a, b):
+    c = a + b
+dodaj(2, 3)
+print(c)

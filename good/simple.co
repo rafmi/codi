@@ -1,0 +1,24 @@
+'''
+int val1 
+int val2 
+int val3 
+int i 
+int sum
+''' 
+val1 = 22 
+val2 = 12 
+print(val1) 
+print(val2) 
+if val1 > val2: 
+    val3 = val1-val2
+else:
+    val3 = val2 - val1
+print(val3) 
+i = 0 
+sum = 0 
+print(i > val3) 
+while i < val3:
+    sum = sum + i 
+    i = i + 1
+print(sum) 
+sum

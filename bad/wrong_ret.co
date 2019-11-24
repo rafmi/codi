@@ -1,0 +1,10 @@
+'''
+int add(int n, int m)
+'''
+def add(i, j):
+    '''
+    string s
+    '''
+    s = "123"
+    return s
+print(add(1, 2))

@@ -1,0 +1,17 @@
+'''
+int calculate(int i, int j)
+int i
+'''
+def calculate(i, j):
+    '''
+    int times_two_plus(int i, int j)
+    int ret
+    '''
+    def times_two_plus(i, j):
+        return 2 * i + j
+    ret = times_two_plus(i, j)
+    return ret * ret
+i = 0
+while i < 10:
+    print(calculate(i, 5))
+    i = i + 1

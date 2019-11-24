@@ -1,0 +1,21 @@
+'''
+int f1(int ind)
+int f2(int ind)
+int i
+'''
+def f1(ind):
+    '''
+    int i
+    '''
+    i = 12
+    i = i + 1
+    return 0
+def f2(ind):
+   i = i + 1
+   return 0
+i = 0
+print(i)
+f1(i)
+print(i)
+f2(i)
+print(i)

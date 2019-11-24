@@ -1,0 +1,73 @@
+Rafał Michaluk rm360179
+
+I may use this language in beyond the Languages course and I want it to have properties:
+    - should work in pyton3 interpreter (easy to learn for anyone who knows basic python)
+    - easy to extend (adding pythonic functions like sort, max, min later)
+    - parse tree should be easy to translate to other popular langues, that's why
+      I want static type checking (translation to C, Java etc.)
+
+So basically a simplified Python with types from C working in python interpreter.
+Has Global/local variables.
+Function arguments are by default passed by reference (like in CPP with &),
+but you can use copy(argument) when calling a function to pass the value by copy.
+(function(copy(argument)))
+
+From requirements:
+I'm planning to implement everything for 20 points + some of the things for 30 points:
+    - static typing
+    - nested functions definitions with identifiers
+    - records (very simple classes)
+    - arrays with indices
+    - nested tuples with assignment
+    - break, continue
+I expect something around 30 pts.
+
+* I may also add some of the most common python syntax (like for, pass)
+* Maybe I'll add multidimentional arrays and ranges implemented like yield
+I really want this language to work in python3 interpreter, so I may change
+the syntax a little bit during implementation if something bad turns out
+(still keeping the requirements of course).
+
+I borrowed some ideas from
+Python grammar (https://docs.python.org/3/reference/grammar.html) and Latte
+
+It's impossible to represent Python indentation with BNF, so I use a trick
+similar to what real python uses
+(https://docs.python.org/3.3/reference/lexical_analysis.html#indentation) 
+
+In short: I do preprocessing of the code. Some spaces and newlines
+are replaced with keywords:
+NEWLINE, INTEND, DETEND. At the same time i check if the indentation is correct
+(trick with stack explained in the link above).
+
+Program examples are in two version: normal and preprocessed for clarity.
+Preprocessed code is consistent with the grammar,
+you can do ./TestCodi < <example_pre>
+Preprocessed files have "_pre" sufix.
+
+
+
+
+
+UPDATE (17.05)
+I've implemented everything for 20 points
++ nested functions defintions
++ while-break, continue
+and some primitive type checking
+Unfortunately I didn't manage to implement all the constructions from my grammar.
+I dont' remove them, because I'd like to do it yet.
+I'd like to add arrays, classes, nested tuples and static typing + make the code somewhat
+shorter and prettier(there are some repetitions). I'll be working on it.
+
+I've added new example programs.
+
+
+
+
+UPDATE (11.06)
+Division is already implemented (I didn't implement floats, so only "//" operator is accesible, as integer division).
+if in while works, but unfortunately requires ' '  before ':'.
+I've added 'void' and procedures.
+I think returning strings works.
+Added some examples explaining it:
+div.co  if_in_while.co  procedure.co  return_string.co break.co

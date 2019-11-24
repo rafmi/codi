@@ -1,0 +1,13 @@
+'''
+int g
+int increment(int ind)
+'''
+def increment(i):
+    i = i + 1
+    return 0
+g = 4
+print(g)
+increment(g)
+print(g)
+increment(&g)
+print(g)

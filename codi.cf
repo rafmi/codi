@@ -1,0 +1,85 @@
+entrypoints Program ;
+
+--- Main program
+EProgram.          Program ::=  [ClassDef] Vars [FunDef] [Instr] ;
+EVars.             Vars ::= "'''" "NEWLINE" [TypeDecl] "'''" "NEWLINE" ;
+VarsEmpty.         Vars ::=  ;
+
+--- Declarations
+DeclVar.           TypeDecl ::= CType Ident ;
+DeclArr.           TypeDecl ::= CType Ident "[]" ;
+DeclFun.           TypeDecl ::= CType Ident "(" [DeclArg] ")" ;
+separator TypeDecl "NEWLINE" ;
+EDeclArg.          DeclArg ::= CType Ident ;
+separator DeclArg  "," ;
+
+--- Records
+EClassDef.         ClassDef ::= "class" Ident ":" "NEWLINE" "INDENT" "'''" "NEWLINE" [TypeDecl] "'''" "NEWLINE" "pass" "DETEND";
+separator          ClassDef "NEWLINE" ;
+
+-- Function with intended block
+EFunDef.           FunDef ::= "def" Ident "(" [Ident] "):" "NEWLINE" Block "NEWLINE" ;
+separator          FunDef "" ;
+separator          Ident "," ;
+EBlock.            Block ::= "INDENT" Vars [FunDef] [Instr] "DEDENT" ;
+
+--- Basic types
+Int.               CType ::= "int" ;
+Str.               CType ::= "string" ;
+Bool.              CType ::= "bool" ;
+TTuple.            CType ::= "tuple" "(" [CType] ")" ;
+TCustom.           CType ::= Ident ;
+Void.              CType ::= "void" ;
+separator CType ","  ;
+
+token BoolVal ({"True"} | {"False"}) ;
+token ListVal ({"[]"}) ;
+
+--- Instructions
+IIf.               Instr ::= "if" Exp ":" "NEWLINE" Block "NEWLINE" [Elif] "else:" "NEWLINE" Block ;
+IElif.             Elif ::= "elif" Exp ":" Block ;
+separator Elif ""  ;
+IPrint.            Instr ::= "print(" Exp ")" ;
+IWhile.            Instr ::= "while" Exp ":" "NEWLINE" Block ;
+IBreak.            Instr ::= "break" ;
+IContinue.         Instr ::= "continue" ;
+IPass.             Instr ::= "pass" ;
+IReturn.           Instr ::= "return" Exp;
+IForup.            Instr ::= "for" Ident "in" "range" "(" Exp ")" ":" Block ;
+IExp.              Instr ::= Exp ;
+EAss.              Instr ::= Variable "=" Exp ;
+separator          Instr "NEWLINE" ;
+
+--Expressions
+EOr.               Exp1 ::= Exp1 "or" Exp2 ;
+EAnd.              Exp2 ::= Exp2 "and" Exp3 ;
+EEqual.            Exp3 ::= Exp3 "==" Exp4 ;
+ENequal.           Exp3 ::= Exp3 "!=" Exp4 ;
+ELess.             Exp4 ::= Exp4 "<" Exp5 ;
+ELeq.              Exp4 ::= Exp4 "<=" Exp5 ;
+EMore.             Exp4 ::= Exp4 ">" Exp5 ;
+EMeq.              Exp4 ::= Exp4 ">=" Exp5 ;
+EPlus.             Exp5 ::= Exp5 "+" Exp6 ;
+EMinus.            Exp5 ::= Exp5 "-" Exp6 ;
+ETimes.            Exp6 ::= Exp6 "*" Exp7 ;
+EDiv.              Exp6 ::= Exp6 "//" Exp7 ;
+ECall.             Exp7 ::= Ident "(" [FunArg] ")" ;
+FunArgCopy.        FunArg ::= Exp ;
+FunArgRef.         FunArg ::= "&"  Variable  ;
+separator FunArg "," ;
+EVar.              Exp7 ::= Variable ;
+EVarName.          Variable ::= Ident;
+EDeref.            Variable ::= Variable "." Ident;
+EArrEl.            Variable ::= Variable "[" Exp "]" ;
+ETuple.            Variable ::= "tuple" "(" [Exp] ")" ;
+EInt.              Exp7 ::= Integer ;
+EBool.             Exp7 ::= BoolVal ;
+EStr.              Exp7 ::= String ;
+EList1.            Exp7 ::= List;
+EList2.            List ::= ListVal ;
+Elist3.            List ::= "[" Exp "]" ;
+EPar.              Exp7 ::= "(" Exp1 ")" ;
+separator Exp "," ;
+coercions Exp 8 ;
+
+comment "#" ;

@@ -1,0 +1,9 @@
+'''
+int fib(int ind)
+'''
+def fib(ind):
+    if ind < 2:
+        return ind
+    else:
+        return fib(ind-2) + fib(ind-1)
+print(fib(5))
