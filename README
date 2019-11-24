@@ -1,3 +1,13 @@
+This is my Haskell implementation of an interpreter
+of a programming language that has syntax 
+very similar to Python.
+Examples of programs are in ./good and ./bad.
+
+
+-----------
+Notes for the instructor:
+
+
 Rafał Michaluk rm360179
 
 I may use this language in beyond the Languages course and I want it to have properties:
